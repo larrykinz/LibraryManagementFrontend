@@ -1,0 +1,94 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>LibraryManagementSystem</title>  
+    <link rel="stylesheet" href="library.css">  
+</head>  
+<body>  
+    <header>  
+        <h1>LibraryManagement</h1>  
+        <nav>  
+            <a href="#">Home</a>  
+            <a href="#">About</a>  
+            <a href="#">Contact</a>  
+        </nav>  
+    </header>  
+    <h3>  
+        <span class="welcome">WELCOME TO </span>  
+        <span class="to-king-library">  KING LIBRARY</span>  
+    </h3>  
+    <div class="flex-wrapper">  
+        <div class="library-images">  
+            <img src="istockphoto-1149064165-612x612.jpg" alt="Books on a Shelf">  
+        </div>  
+        <div class="container">  
+            <div class="staff">  
+                <h2>Staff Login/Register</h2>  
+                <button onclick="document.getElementById('staffLogin').style.display='block'">Login</button>  
+                <button onclick="document.getElementById('staffRegister').style.display='block'">Register</button>  
+
+                <div id="staffLogin" class="modal">  
+                    <form id="staffLoginForm" class="modal-content" onsubmit="handleLogin(event)">  
+                        <span onclick="document.getElementById('staffLogin').style.display='none'" class="close" title="Close Modal">&times;</span>  
+                        <h2>Staff Login</h2>  
+                        <label for="staffUsername">Username:</label>  
+                        <input type="text" id="staffUsername" name="staffUsername" required>  
+                        <label for="staffPassword">Password:</label>  
+                        <input type="password" id="staffPassword" name="staffPassword" required>  
+                        <button type="submit">Login</button>
+                    </form>  
+                </div>  
+
+                <div id="staffRegister" class="modal">  
+                    <form id="staffRegisterForm" class="modal-content">  
+                        <span onclick="document.getElementById('staffRegister').style.display='none'" class="close" title="Close Modal">&times;</span>  
+                        <h2>Staff Register</h2>  
+                        <label for="staffRegUsername">Username:</label>  
+                        <input type="text" id="staffRegUsername" name="staffRegUsername" required>  
+                        <label for="staffEmail">Email:</label>  
+                        <input type="email" id="staffEmail" name="staffEmail" required>  
+                        <label for="staffRegPassword">Password:</label>  
+                        <input type="password" id="staffRegPassword" name="staffRegPassword" required>  
+                        <button type="submit">Register</button>  
+                    </form>  
+                </div>  
+            </div>  
+
+            <div class="member">  
+                <h2>Member Login/Register</h2>  
+                <button onclick="document.getElementById('memberLogin').style.display='block'">Sign In</button>  
+                <button onclick="document.getElementById('memberRegister').style.display='block'">Register</button>  
+
+                <div id="memberLogin" class="modal">  
+                    <form id="memberLoginForm" class="modal-content">  
+                        <span onclick="document.getElementById('memberLogin').style.display='none'" class="close" title="Close Modal">&times;</span>  
+                        <h2>Member Login</h2>  
+                        <label for="memberUsername">Username:</label>  
+                        <input type="text" id="memberUsername" name="memberUsername" required>  
+                        <label for="memberPassword">Password:</label>  
+                        <input type="password" id="memberPassword" name="memberPassword" required>  
+                        <button type="submit">Login</button>  
+                    </form>  
+                </div>  
+
+                <div id="memberRegister" class="modal">  
+                    <form id="memberRegisterForm" class="modal-content">  
+                        <span onclick="document.getElementById('memberRegister').style.display='none'" class="close" title="Close Modal">&times;</span>  
+                        <h2>Member Register</h2>  
+                        <label for="memberRegUsername">Username:</label>  
+                        <input type="text" id="memberRegUsername" name="memberRegUsername" required>  
+                        <label for="memberEmail">Email:</label>  
+                        <input type="email" id="memberEmail" name="memberEmail" required>  
+                        <label for="memberRegPassword">Password:</label>  
+                        <input type="password" id="memberRegPassword" name="memberRegPassword" required>  
+                        <button type="submit">Register</button>  
+                    </form>  
+                </div>  
+            </div>  
+        </div>  
+    </div>  
+    <script src="Library.js"></script>
+</body>  
+</html>

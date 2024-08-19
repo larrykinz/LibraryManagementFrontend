@@ -1,0 +1,56 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Login/Register</title>  
+</head>  
+<body>  
+    <div>  
+        <div class="staff">  
+            <h2>Staff Login/Register</h2>  
+            <button onclick="document.getElementById('staffLogin').style.display='block'">Login</button>  
+            <button onclick="document.getElementById('staffRegister').style.display='block'">Register</button>  
+
+            <div id="staffLogin" class="modal">  
+                <form id="staffLoginForm" class="modal-content" onsubmit="handleLogin(event)">  
+                    <span onclick="document.getElementById('staffLogin').style.display='none'" class="close" title="Close Modal">&times;</span>  
+                    <h2>Staff Login</h2>  
+                    <label for="staffUsername">Username:</label>  
+                    <input type="text" id="staffUsername" name="staffUsername" required>  
+                    <label for="staffPassword">Password:</label>  
+                    <input type="password" id="staffPassword" name="staffPassword" required>  
+                    <button type="submit">Login</button>  
+                </form>  
+            </div>  
+        </div>  
+    </div>  
+
+    <script src="Library.js"></script>  
+<script>  
+    document.getElementById('staffLoginForm').addEventListener('submit', async (event) => {  
+        event.preventDefault();  
+
+        const formData = new FormData(event.target);  
+        const response = await fetch('http://localhost:8080/staff/login', { 
+            method: 'POST',  
+            body: JSON.stringify({  
+                staffUsername: formData.get('staffUsername'),  
+                staffPassword: formData.get('staffPassword')  
+            }),  
+            headers: {  
+                'Content-Type': 'application/json'  
+            }  
+        });  
+
+        const result = await response.json();  
+        if (result.success) {  
+            alert('Login successful!');  
+            window.location.href = 'staffActivities.html'; 
+        } else {  
+            alert('Login failed: ' + result.message);  
+        }  
+    });  
+</script>  
+</body>  
+</html>

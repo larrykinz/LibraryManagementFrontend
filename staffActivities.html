@@ -1,0 +1,109 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Staff Activities - Book Management</title>  
+    <style>  
+        body { font-family: Arial, sans-serif; margin: 20px; }  
+        section { margin-bottom: 30px; }  
+        input { display: block; margin-bottom: 10px; }  
+    </style>  
+</head>  
+<body>  
+    <h1>Staff Activities - Book Management</h1>  
+
+    <section>  
+        <h2>Add Book</h2>  
+        <form id="addBookForm">  
+            <input type="text" id="addBookTitle" placeholder="Book Title" required>  
+            <input type="text" id="addBookAuthor" placeholder="Book Author" required>  
+            <input type="text" id="addBookIsbn" placeholder="ISBN" required>  
+            <button type="submit">Add Book</button>  
+        </form>  
+    </section>  
+
+    <section>  
+        <h2>Update Book</h2>  
+        <form id="updateBookForm">  
+            <input type="text" id="updateBookId" placeholder="Book ID" required>  
+            <input type="text" id="updateBookTitle" placeholder="New Book Title" required>  
+            <input type="text" id="updateBookAuthor" placeholder="New Book Author" required>  
+            <input type="text" id="updateBookIsbn" placeholder="New ISBN" required>  
+            <button type="submit">Update Book</button>  
+        </form>  
+    </section>  
+
+    <section>  
+        <h2>Delete Book</h2>  
+        <form id="deleteBookForm">  
+            <input type="text" id="deleteBookId" placeholder="Book ID to Delete" required>  
+            <button type="submit">Delete Book</button>  
+        </form>  
+    </section>  
+
+    <script>   
+        document.getElementById('addBookForm').addEventListener('submit', function(e) {  
+            e.preventDefault();  
+            const title = document.getElementById('addBookTitle').value;  
+            const author = document.getElementById('addBookAuthor').value;  
+            const isbn = document.getElementById('addBookIsbn').value;  
+
+            fetch('http://localhost:8080/staff/addBook', {  
+                method: 'POST',  
+                headers: {  
+                    'Content-Type': 'application/json'  
+                },  
+                body: JSON.stringify({ title, author, isbn, type: "STORYBOOK" })  
+            }).then(response => {  
+                if (response.ok) {  
+                    alert('Book added successfully!');  
+                } else {  
+                    alert('Error adding book.');  
+                }  
+            });  
+        });  
+
+        document.getElementById('updateBookForm').addEventListener('submit', function(e) {  
+            e.preventDefault();  
+            const bookId = document.getElementById('updateBookId').value;  
+            const title = document.getElementById('updateBookTitle').value;  
+            const author = document.getElementById('updateBookAuthor').value;  
+            const isbn = document.getElementById('updateBookIsbn').value;  
+
+            fetch('http://localhost:8080/staff/updateBook', {  
+                method: 'PUT',  
+                headers: {  
+                    'Content-Type': 'application/json'  
+                },  
+                body: JSON.stringify({ bookId, title, author, isbn, type: "STORYBOOK" })  
+            }).then(response => {  
+                if (response.ok) {  
+                    alert('Book updated successfully!');  
+                } else {  
+                    alert('Error updating book.');  
+                }  
+            });  
+        });  
+
+        document.getElementById('deleteBookForm').addEventListener('submit', function(e) {  
+            e.preventDefault();  
+            const bookId = document.getElementById('deleteBookId').value;  
+
+            fetch('http://localhost:8080/staff/deleteBook', {  
+                method: 'DELETE',  
+                headers: {  
+                    'Content-Type': 'application/json'  
+                },  
+                body: JSON.stringify({ bookId })  
+            }).then(response => {  
+                if (response.ok) {  
+                    alert('Book deleted successfully!');  
+                } else {  
+                    alert('Error deleting book.');  
+                }  
+            });  
+        });  
+    </script>  
+</body>  
+</html>
